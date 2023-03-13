@@ -13,16 +13,15 @@ public class MonoWeakSingleton<T> : MonoBehaviour where T : MonoBehaviour
                 var founds = FindObjectsOfType(typeof(T));
                 if (founds.Length > 1)
                 {
-                    Debug.LogError("[Weak Singleton] Singlton '" + typeof(T) +
-                        "' should never be more than 1!");
-                    return null;
+                    Debug.LogError("[Weak Singleton] Singlton '" + typeof(T) + "' should never be more than 1!");
                 }
-                else if (founds.Length > 0)
+                else if (founds.Length == 0)
+                {
+                    Debug.LogError("[Weak Singleton] Singleton '" + typeof(T) + "' is not exist in this scene!");
+                }
+                else
                 {
                     _instance = (T)founds[0];
-
-                    Debug.Log("[Weak Singleton] Singleton '" + typeof(T) +
-                        "' already created in this scene!");
                 }
             }
             return _instance;
