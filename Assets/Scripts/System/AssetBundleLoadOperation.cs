@@ -9,11 +9,18 @@ public enum AssetBundleLoadStatus
     Failed    = 2
 }
 
-public abstract class AssetBundleLoadOperation : MonoBehaviour
+public abstract class AssetBundleLoadOperation
 {
     protected UnityEngine.Object asset;
     protected AssetBundleLoadStatus loadStatus = AssetBundleLoadStatus.None;
 
     public UnityEngine.Object GetAsset() => asset;
+
     public virtual bool IsDone() { return loadStatus == AssetBundleLoadStatus.Succeeded; }
+    public virtual IEnumerator Load() { yield return null; }
+}
+
+public class AssetBundleLoadSimulation : AssetBundleLoadOperation
+{
+    public AssetBundleLoadSimulation() { loadStatus = AssetBundleLoadStatus.Succeeded; }
 }

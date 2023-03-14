@@ -7,34 +7,39 @@ using UnityEngine.Networking;
 using UnityEditor;
 #endif
 
+[RequireComponent(typeof(AssetLoadOperationHandler))]
 public class AssetManager : MonoWeakSingleton<AssetManager>
 {
+    private AssetLoadOperationHandler operationHanlder;
+
     private Dictionary<string, AssetBundle> assetBundleDict = new Dictionary<string, AssetBundle>();
     private Dictionary<string, Dictionary<string, UnityEngine.Object>> assetDict = new Dictionary<string, Dictionary<string, UnityEngine.Object>>();
 
-    public void AddAssetBundle(AssetBundle bundle, string bundleName)
+    private void Awake()
+    {
+        operationHanlder = gameObject.GetComponent<AssetLoadOperationHandler>();
+    }
+
+    public void SetLoadedAssetBundle(AssetBundle bundle, string bundleName)
     {
         assetBundleDict[bundleName] = bundle;
     }
 
-    public AssetBundle GetAssetBundle(string bundleName)
+    public AssetBundle GetLoadedAssetBundle(string bundleName)
     {
         AssetBundle bundle = null;
         assetBundleDict.TryGetValue(bundleName, out bundle);
         return bundle;
     }
 
-    public void AddAsset(UnityEngine.Object asset, string bundleName, string assetName)
+    public void SetLoadedAsset(UnityEngine.Object asset, string bundleName, string assetName)
     {
-        assetDict[bundleName][assetName] = asset;
+        Dictionary<string, UnityEngine.Object> tmpDict = null;
+        if (assetDict.TryGetValue(bundleName, out tmpDict))
+            tmpDict[assetName] = asset;
     }
 
-    public T GetAsset<T>(string bundleName, string assetName) where T : UnityEngine.Object
-    {
-        return GetAsset(bundleName, assetName) as T;
-    }
-
-    public UnityEngine.Object GetAsset(string bundleName, string assetName)
+    public UnityEngine.Object GetLoadedAsset(string bundleName, string assetName)
     {
         Dictionary<string, UnityEngine.Object> tmpDict = null;
         if (assetDict.TryGetValue(bundleName, out tmpDict))
@@ -46,48 +51,45 @@ public class AssetManager : MonoWeakSingleton<AssetManager>
         return null;
     }
 
-    // TODO: Simulation
     public AssetBundleLoadOperation LoadAssetBundle(string bundleName)
     {
-        var bundle = GetAssetBundle(bundleName);
+        var bundle = GetLoadedAssetBundle(bundleName);
         if (bundle != null)
-            return new AssetBundleLoadBundle(bundleName);
-        return new AssetBundleLoadBundle(bundleName);
+            return new AssetBundleLoadSimulation();
+
+        var operation = new AssetBundleLoadBundle(bundleName);
+        operationHanlder.Enqueue(operation);
+        return operation;
     }
 
-    public AssetBundleLoadOperation LoadAsset(string bundleName, string assetName)
+    public T LoadAsset<T>(string bundleName, string assetName) where T : UnityEngine.Object
     {
-        var bundle = GetAssetBundle(bundleName);
+        var asset = GetLoadedAsset(bundleName, assetName);
+        if (asset != null)
+            return asset as T;
+
+#if UNITY_EDITOR
+        var bundle = AssetDatabase.LoadMainAssetAtPath(Path.Combine(Application.streamingAssetsPath, bundleName)) as AssetBundle;
+#else
+        var bundle = GetLoadedAssetBundle(bundleName);
+#endif
         if (bundle != null)
-            return new AssetBundleLoadBundle(bundleName);
-        return new AssetBundleLoadBundle(bundleName);
+            return bundle.LoadAsset(assetName) as T;
+        return null;
     }
 
-//     private IEnumerator LoadAssetbOperation(string bundleName, string assetName)
-//     {
-//         GameObject asset = null;
+    public AssetBundleLoadOperation LoadAssetAsync<T>(string bundleName, string assetName) where T : UnityEngine.Object
+    {
+        var asset = GetLoadedAsset(bundleName, assetName);
+        if (asset != null)
+            return new AssetBundleLoadAssetSimulation<T>(bundleName, assetName);
 
-// #if UNITY_EDITOR
-//         var assetPaths = AssetDatabase.GetAssetPathsFromAssetBundleAndAssetName(bundleName, assetName);
-//         if (assetPaths.Length > 0)
-//             asset = AssetDatabase.LoadMainAssetAtPath(assetPaths[0]) as GameObject;
-// #else
-//         string uri = GetStreamingAssetsPath(bundleName);
-//         UnityWebRequest request = UnityWebRequestAssetBundle.GetAssetBundle(uri);
-
-//         yield return request.SendWebRequest();
-
-//         AssetBundle bundle = DownloadHandlerAssetBundle.GetContent(request);
-//         AssetBundleRequest assetRequest = bundle.LoadAssetAsync<GameObject>(assetName);
-
-//         yield return assetRequest;
-
-//         asset = assetRequest.asset as GameObject;
-// #endif
-//         Instantiate(asset);
-
-//         yield return null;
-//     }
+#if UNITY_EDITOR
+        return new AssetBundleLoadAssetSimulation<T>(bundleName, assetName);
+#else
+        return new AssetBundleLoadAsset<T>(bundleName, assetName);
+#endif
+    }
 
     public string GetStreamingAssetsPath(string bundleName)
     {

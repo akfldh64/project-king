@@ -7,17 +7,12 @@ public class AssetBundleLoadBundle : AssetBundleLoadOperation
 {
     private string bundleName;
 
-    protected new AssetBundle asset;
+    private new AssetBundle asset;
     public new AssetBundle GetAsset() { return asset; }
 
     public AssetBundleLoadBundle(string bundleName) { this.bundleName = bundleName; }
 
-    public void Load()
-    {
-        StartCoroutine(LoadBundle(bundleName));
-    }
-
-    private IEnumerator LoadBundle(string bundleName)
+    public override IEnumerator Load()
     {
         string uri = AssetManager.Instance.GetStreamingAssetsPath(bundleName);
         UnityWebRequest request = UnityWebRequestAssetBundle.GetAssetBundle(uri);
@@ -25,8 +20,7 @@ public class AssetBundleLoadBundle : AssetBundleLoadOperation
         yield return request.SendWebRequest();
 
         asset = DownloadHandlerAssetBundle.GetContent(request);
-        AssetManager.Instance.AddAssetBundle(asset, bundleName);
-
+        AssetManager.Instance.SetLoadedAssetBundle(asset, bundleName);
         loadStatus = AssetBundleLoadStatus.Succeeded;
 
         yield return null;

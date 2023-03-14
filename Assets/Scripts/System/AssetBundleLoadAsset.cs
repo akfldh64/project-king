@@ -5,37 +5,18 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-public class AssetBundleLoadAsset : AssetBundleLoadOperation
+public class AssetBundleLoadAsset<T> : AssetBundleLoadOperation where T : UnityEngine.Object
 {
     private string bundleName;
     private string assetName;
 
     public AssetBundleLoadAsset(string bundleName, string assetName) { this.bundleName = bundleName; this.assetName = assetName; }
 
-    public void Load<T>()
+    public new T GetAsset() => asset as T;
+
+    public override IEnumerator Load()
     {
-        StartCoroutine(LoadAsset<T>(bundleName, assetName));
-    }
-
-    private IEnumerator LoadAsset<T>(string bundleName, string assetName)
-    {
-#if UNITY_EDITOR
-        var assetPaths = AssetDatabase.GetAssetPathsFromAssetBundleAndAssetName(bundleName, assetName);
-        if (assetPaths.Length > 0)
-        {
-            asset = AssetDatabase.LoadMainAssetAtPath(assetPaths[0]) as GameObject;        
-            AssetManager.Instance.AddAsset(asset, bundleName, assetName);
-
-            loadStatus = AssetBundleLoadStatus.Succeeded;
-        }
-        else
-        {
-            loadStatus = AssetBundleLoadStatus.Failed;
-        }
-
-        yield return null;
-#else
-        var bundle = AssetManager.Instance.GetAssetBundle(bundleName);
+        var bundle = AssetManager.Instance.GetLoadedAssetBundle(bundleName);
         if (bundle != null)
         {
             AssetBundleRequest assetRequest = bundle.LoadAssetAsync<T>(assetName);
@@ -43,15 +24,26 @@ public class AssetBundleLoadAsset : AssetBundleLoadOperation
             yield return assetRequest;
 
             asset = assetRequest.asset as GameObject;
-            AssetManager.Instance.AddAsset(asset, bundleName, assetName);
-
+            AssetManager.Instance.SetLoadedAsset(asset, bundleName, assetName);
             loadStatus = AssetBundleLoadStatus.Succeeded;
-
-            yield return null;
         }
-        loadStatus = AssetBundleLoadStatus.Failed;
-
         yield return null;
-#endif
     }
+}
+public class AssetBundleLoadAssetSimulation<T> : AssetBundleLoadOperation where T : UnityEngine.Object
+{
+    private void LoadAsset(string bundleName, string assetName)
+    {
+        var assetPaths = AssetDatabase.GetAssetPathsFromAssetBundleAndAssetName(bundleName, assetName);
+        if (assetPaths.Length > 0)
+        {
+            asset = AssetDatabase.LoadMainAssetAtPath(assetPaths[0]) as GameObject;
+            AssetManager.Instance.SetLoadedAsset(asset, bundleName, assetName);
+        }
+        loadStatus = AssetBundleLoadStatus.Succeeded;
+    }
+
+    public AssetBundleLoadAssetSimulation(string bundleName, string assetName) { LoadAsset(bundleName, assetName); }
+
+    public new T GetAsset() => asset as T;
 }
