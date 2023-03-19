@@ -5,8 +5,9 @@ using UnityEngine;
 public class EventData
 {
     public string name;
-    public object value;
+    public object value = null;
 
+    public EventData(string name) { this.name = name; }
     public EventData(string name, object value)
     {
         this.name = name;
