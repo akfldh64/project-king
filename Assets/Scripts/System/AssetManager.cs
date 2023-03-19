@@ -69,12 +69,14 @@ public class AssetManager : MonoWeakSingleton<AssetManager>
             return asset as T;
 
 #if UNITY_EDITOR
-        var bundle = AssetDatabase.LoadMainAssetAtPath(Path.Combine(Application.streamingAssetsPath, bundleName)) as AssetBundle;
+        string[] assetPaths = AssetDatabase.GetAssetPathsFromAssetBundleAndAssetName(bundleName, assetName);
+        if (assetPaths.Length > 0)
+            return AssetDatabase.LoadMainAssetAtPath(assetPaths[0]) as T;
 #else
         var bundle = GetLoadedAssetBundle(bundleName);
-#endif
         if (bundle != null)
             return bundle.LoadAsset(assetName) as T;
+#endif
         return null;
     }
 

@@ -15,12 +15,14 @@ public abstract class AssetBundleLoadOperation
     protected AssetBundleLoadStatus loadStatus = AssetBundleLoadStatus.None;
 
     public UnityEngine.Object GetAsset() => asset;
-
     public virtual bool IsDone() { return loadStatus == AssetBundleLoadStatus.Succeeded; }
     public virtual IEnumerator Load() { yield return null; }
 }
 
 public class AssetBundleLoadSimulation : AssetBundleLoadOperation
 {
-    public AssetBundleLoadSimulation() { loadStatus = AssetBundleLoadStatus.Succeeded; }
+    public AssetBundleLoadSimulation()
+    {
+        loadStatus = AssetBundleLoadStatus.Succeeded;
+    }
 }

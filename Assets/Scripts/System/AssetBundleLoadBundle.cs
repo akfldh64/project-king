@@ -21,6 +21,7 @@ public class AssetBundleLoadBundle : AssetBundleLoadOperation
 
         asset = DownloadHandlerAssetBundle.GetContent(request);
         AssetManager.Instance.SetLoadedAssetBundle(asset, bundleName);
+
         loadStatus = AssetBundleLoadStatus.Succeeded;
 
         yield return null;
