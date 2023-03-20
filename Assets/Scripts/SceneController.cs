@@ -5,17 +5,6 @@ using UnityEngine;
 public class SceneController : MonoBehaviour
 {
     public GameObject main;
-
-    public void ShowMain()
-    {
-        main.SetActive(true);
-    }
-
-    public void HideMain()
-    {
-        main.SetActive(false);
-    }
-
     public List<GameObject> scenes;
 
     private int _sceneIndex;
@@ -47,5 +36,15 @@ public class SceneController : MonoBehaviour
     {
         if (isActive != gameObject.activeSelf)
             gameObject.SetActive(isActive);
+    }
+
+    public void ShowMain()
+    {
+        main.SetActive(true);
+    }
+
+    public void HideMain()
+    {
+        main.SetActive(false);
     }
 }
