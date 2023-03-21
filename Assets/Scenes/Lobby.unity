@@ -478,7 +478,7 @@ PrefabInstance:
     - target: {fileID: 8426311609290441528, guid: 424fb3098e8a24cacb3eba428f38f619, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1951903738}
+      objectReference: {fileID: 0}
     - target: {fileID: 8426311609290441528, guid: 424fb3098e8a24cacb3eba428f38f619, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -772,7 +772,7 @@ PrefabInstance:
     - target: {fileID: 8426311609290441528, guid: 424fb3098e8a24cacb3eba428f38f619, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1951903738}
+      objectReference: {fileID: 0}
     - target: {fileID: 8426311609290441528, guid: 424fb3098e8a24cacb3eba428f38f619, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -2370,7 +2370,7 @@ PrefabInstance:
     - target: {fileID: 8426311609290441528, guid: 424fb3098e8a24cacb3eba428f38f619, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1951903738}
+      objectReference: {fileID: 0}
     - target: {fileID: 8426311609290441528, guid: 424fb3098e8a24cacb3eba428f38f619, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -2870,7 +2870,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 356785116722750838, guid: 7b5b4fd1db17d44a2bc4ae48eb2770c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Property Page
+      value: Manage Page
       objectReference: {fileID: 0}
     - target: {fileID: 2867072155391511806, guid: 7b5b4fd1db17d44a2bc4ae48eb2770c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -3242,7 +3242,6 @@ GameObject:
   - component: {fileID: 1951903735}
   - component: {fileID: 1951903736}
   - component: {fileID: 1951903737}
-  - component: {fileID: 1951903738}
   m_Layer: 0
   m_Name: Bottom UI
   m_TagString: Untagged
@@ -3309,18 +3308,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &1951903738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1951903734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ba7ac24854684ca3835d6709aff1ad8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1954743610
 GameObject:
   m_ObjectHideFlags: 0
