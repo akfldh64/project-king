@@ -12,11 +12,14 @@ public abstract class ManageElement : MonoBehaviour
     public int collectCount;
     public long collectAmount;
 
-    // public TextMeshProUGUI collectText;
     public Button button;
+
+    public TextMeshProUGUI collectText;
 
     public void Awake() { button.onClick.AddListener(AddResource); }
     public void SetPage(ManagePage page) { this.page = page; }
+
+    public virtual void Start() { collectText.SetText($"{maxCollectCount - collectCount}/{maxCollectCount}"); }
 
     public abstract void AddResource();
 }

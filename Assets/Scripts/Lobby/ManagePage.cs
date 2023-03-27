@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class ManagePage : MonoBehaviour
+public class ManagePage : Page
 {
     public List<ManageElement> elements;
 
@@ -37,5 +37,10 @@ public class ManagePage : MonoBehaviour
     {
         soldierAmount += amount;
         soldierText.SetText(soldierAmount.ToString());
+    }
+
+    protected override void OnClose()
+    {
+        caller.SendMessage("Closed", this.gameObject);
     }
 }
