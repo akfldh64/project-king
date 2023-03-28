@@ -38,9 +38,4 @@ public class ManagePage : Page
         soldierAmount += amount;
         soldierText.SetText(soldierAmount.ToString());
     }
-
-    protected override void OnClose()
-    {
-        caller.SendMessage("Closed", this.gameObject);
-    }
 }

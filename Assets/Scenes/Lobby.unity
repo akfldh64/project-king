@@ -891,13 +891,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventDelegates:
-  - eventName: HideLobby
+  - eventName: HideUI
     delegator:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 246116666}
           m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
-          m_MethodName: HideMain
+          m_MethodName: HideUI
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventName: ShowUI
+    delegator:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 246116666}
+          m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
+          m_MethodName: ShowUI
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -2699,7 +2715,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5814168900255409830, guid: 9f360248a75e74fcf89a7109b2356ecd, type: 3}
       propertyPath: m_Name
-      value: Scene Castle
+      value: Castle
       objectReference: {fileID: 0}
     - target: {fileID: 5814168900255409830, guid: 9f360248a75e74fcf89a7109b2356ecd, type: 3}
       propertyPath: m_IsActive
@@ -2808,7 +2824,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1665c8640bce4f9181dff91f7d0e177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  caller: {fileID: 0}
 --- !u!1 &1832815765
 GameObject:
   m_ObjectHideFlags: 0
@@ -2899,7 +2914,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 356785116722750838, guid: 7b5b4fd1db17d44a2bc4ae48eb2770c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadManage
+      value: LoadManagePage
       objectReference: {fileID: 0}
     - target: {fileID: 356785116722750838, guid: 7b5b4fd1db17d44a2bc4ae48eb2770c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -2943,7 +2958,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4334818559241314114, guid: 7b5b4fd1db17d44a2bc4ae48eb2770c9, type: 3}
       propertyPath: m_Name
-      value: Scene Home
+      value: Home
       objectReference: {fileID: 0}
     - target: {fileID: 4334818559241314115, guid: 7b5b4fd1db17d44a2bc4ae48eb2770c9, type: 3}
       propertyPath: m_Pivot.x
@@ -3054,7 +3069,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1665c8640bce4f9181dff91f7d0e177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  caller: {fileID: 0}
 --- !u!1001 &1868451221
 PrefabInstance:
   m_ObjectHideFlags: 0

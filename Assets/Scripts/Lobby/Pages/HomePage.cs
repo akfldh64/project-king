@@ -4,10 +4,17 @@ using UnityEngine;
 
 public class HomePage : Page
 {
-    public void LoadManage()
+    private void OnClose(Page page)
     {
-        var controller = caller.GetComponent<SceneController>();
-        controller.LoadPage("Manage Page");
-        controller.HideUI();
+        Destroy(page.gameObject);
+        EventDispatcher.SendEvent("UI_EVENT", new EventData("ShowUI"));
+    }
+
+    public void LoadManagePage()
+    {
+        var page = PageManager.Instance.LoadPage("lobby", "Manage Page", "Main Canvas/Lobby");
+        page.GetComponent<Page>().onClose = OnClose;
+
+        EventDispatcher.SendEvent("UI_EVENT", new EventData("HideUI"));
     }
 }

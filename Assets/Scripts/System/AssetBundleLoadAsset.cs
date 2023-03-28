@@ -26,7 +26,7 @@ public class AssetBundleLoadAsset<T> : AssetBundleLoadOperation where T : UnityE
 
             yield return assetRequest;
 
-            asset = assetRequest.asset as GameObject;
+            asset = assetRequest.asset as T;
             AssetManager.Instance.SetLoadedAsset(asset, bundleName, assetName);
 
             loadStatus = AssetBundleLoadStatus.Succeeded;
@@ -42,7 +42,7 @@ public class AssetBundleLoadAssetSimulation<T> : AssetBundleLoadOperation where 
         var assetPaths = AssetDatabase.GetAssetPathsFromAssetBundleAndAssetName(bundleName, assetName);
         if (assetPaths.Length > 0)
         {
-            asset = AssetDatabase.LoadMainAssetAtPath(assetPaths[0]) as GameObject;
+            asset = AssetDatabase.LoadMainAssetAtPath(assetPaths[0]) as T;
             AssetManager.Instance.SetLoadedAsset(asset, bundleName, assetName);
         }
 #endif
