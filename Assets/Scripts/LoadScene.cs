@@ -1,15 +1,22 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class LoadScene : MonoBehaviour
 {
-    public void Load(int sceneBuildIndex)
+    const int LOBBY_SCENE_ID = 1;
+
+    public void Load()
     {
-        SceneManager.LoadScene(sceneBuildIndex, LoadSceneMode.Single);
+        StartCoroutine(LoadBundle("lobby"));
     }
 
-    public void Load(string sceneName)
+    public IEnumerator LoadBundle(string bundleName)
     {
-        SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+        var operation = AssetManager.Instance.LoadAssetBundle(bundleName);
+
+        yield return new WaitUntil(() => operation.IsDone());
+
+        SceneManager.LoadScene(LOBBY_SCENE_ID, LoadSceneMode.Single);
     }
 }
