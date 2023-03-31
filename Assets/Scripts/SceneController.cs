@@ -21,9 +21,18 @@ public class SceneController : MonoBehaviour
         }
     }
 
+    private int lastIndex = 1;
+
     public void Awake()
     {
-        // Register with Page
+        scenes[0].GetComponent<Page>().onClose = (page) => {
+            LoadMainScene();
+        };
+    }
+
+    public void LoadMainScene()
+    {
+        LoadScene(lastIndex);
     }
 
     public void LoadScene(int index)
@@ -31,7 +40,11 @@ public class SceneController : MonoBehaviour
         for (int i = 0; i < scenes.Count; ++i)
         {
             if (index == i)
+            {
                 SetActive(scenes[i], true);
+                if (i == 1 || i == 2)
+                    lastIndex = i;
+            }
             else
                 SetActive(scenes[i], false);
         }
@@ -43,12 +56,12 @@ public class SceneController : MonoBehaviour
             gameObject.SetActive(isActive);
     }
 
-    public void ShowUI()
+    public void ShowLobby()
     {
         main.SetActive(true);
     }
 
-    public void HideUI()
+    public void HideLobby()
     {
         main.SetActive(false);
     }
