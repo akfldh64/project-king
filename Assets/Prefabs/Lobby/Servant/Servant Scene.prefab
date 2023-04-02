@@ -1201,7 +1201,7 @@ GameObject:
   - component: {fileID: 4058208097293880094}
   - component: {fileID: 5863508067253563737}
   m_Layer: 0
-  m_Name: Servent Scene
+  m_Name: Servant Scene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3148,7 +3148,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3866852589154607158, guid: f6dfa472f6b654e4db1bffd2fb9cc08d, type: 3}
       propertyPath: m_Name
-      value: Member
+      value: Servant
       objectReference: {fileID: 0}
     - target: {fileID: 5788607475210317960, guid: f6dfa472f6b654e4db1bffd2fb9cc08d, type: 3}
       propertyPath: m_AnchorMax.y
@@ -3314,7 +3314,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3866852589154607158, guid: f6dfa472f6b654e4db1bffd2fb9cc08d, type: 3}
       propertyPath: m_Name
-      value: Member
+      value: Servant
       objectReference: {fileID: 0}
     - target: {fileID: 5788607475210317960, guid: f6dfa472f6b654e4db1bffd2fb9cc08d, type: 3}
       propertyPath: m_AnchorMax.y
@@ -3480,7 +3480,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3866852589154607158, guid: f6dfa472f6b654e4db1bffd2fb9cc08d, type: 3}
       propertyPath: m_Name
-      value: Member
+      value: Servant
       objectReference: {fileID: 0}
     - target: {fileID: 5788607475210317960, guid: f6dfa472f6b654e4db1bffd2fb9cc08d, type: 3}
       propertyPath: m_AnchorMax.y
@@ -3646,7 +3646,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3866852589154607158, guid: f6dfa472f6b654e4db1bffd2fb9cc08d, type: 3}
       propertyPath: m_Name
-      value: Member
+      value: Servant
       objectReference: {fileID: 0}
     - target: {fileID: 5788607475210317960, guid: f6dfa472f6b654e4db1bffd2fb9cc08d, type: 3}
       propertyPath: m_AnchorMax.y
@@ -3812,7 +3812,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3866852589154607158, guid: f6dfa472f6b654e4db1bffd2fb9cc08d, type: 3}
       propertyPath: m_Name
-      value: Member
+      value: Servant
       objectReference: {fileID: 0}
     - target: {fileID: 5788607475210317960, guid: f6dfa472f6b654e4db1bffd2fb9cc08d, type: 3}
       propertyPath: m_AnchorMax.y
@@ -3978,7 +3978,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3866852589154607158, guid: f6dfa472f6b654e4db1bffd2fb9cc08d, type: 3}
       propertyPath: m_Name
-      value: Member
+      value: Servant
       objectReference: {fileID: 0}
     - target: {fileID: 5788607475210317960, guid: f6dfa472f6b654e4db1bffd2fb9cc08d, type: 3}
       propertyPath: m_AnchorMax.y
