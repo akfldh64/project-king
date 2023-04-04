@@ -11,9 +11,8 @@ public class ServantStatusPage : Page
     public TextMeshProUGUI talent;
     public TextMeshProUGUI ability;
 
-    public void Awake()
+    public void Start()
     {
-        servantInfo = TempGlobalData.Instance.openedServantInfo;
         UpdateInfo();
     }
 

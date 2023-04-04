@@ -4,11 +4,12 @@ using UnityEngine;
 
 public abstract class Page : MonoBehaviour
 {
-    public delegate void EventDelegate(Page page);
+    public delegate void EventDelegate(GameObject go);
     public EventDelegate onClose;
 
     public void Close()
     {
-        onClose.Invoke(this);
+        onClose.Invoke(gameObject);
+        Destroy(gameObject);
     }
 }

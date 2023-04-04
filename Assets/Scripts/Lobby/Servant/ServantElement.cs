@@ -49,8 +49,8 @@ public class ServantElement : MonoBehaviour
 {
     private ServantInfo servantInfo;
 
-    public Button panelButton;
     public Button upgradeButton;
+    public Button panelButton;
 
     public TextMeshProUGUI level;
     public TextMeshProUGUI talent;
@@ -58,26 +58,14 @@ public class ServantElement : MonoBehaviour
 
     public void Awake()
     {
-        panelButton.onClick.AddListener(OpenStatus);
-        upgradeButton.onClick.AddListener(UpgradeStatus);
+        upgradeButton.onClick.AddListener(Upgrade);
+        panelButton.onClick.AddListener(OpenStatusPage);
 
-        servantInfo = new ServantInfo(1);   // Dummy Data
+        servantInfo = new ServantInfo(1);   // Dummy data
         UpdateInfo();
     }
 
-    public void OpenStatus()
-    {
-        TempGlobalData.Instance.openedServantInfo = servantInfo;
-
-        var page = Instantiate(AssetManager.Instance.LoadAsset<GameObject>("lobby", "Servant Status Page"));
-        page.gameObject.name = "Servant Status Page";
-        page.transform.SetParent(GameObject.Find("Main Canvas").transform, false);
-        page.GetComponent<Page>().onClose = OnCloseStatus;
-
-        EventDispatcher.SendEvent("UI_EVENT", new EventData("HideLobby"));
-    }
-
-    public void UpgradeStatus()
+    public void Upgrade()
     {
         if (servantInfo.level < 10)
         {
@@ -86,21 +74,28 @@ public class ServantElement : MonoBehaviour
         }
     }
 
+    public void OpenStatusPage()
+    {
+        var page = Instantiate(AssetManager.Instance.LoadAsset<GameObject>("lobby", "Servant Status Page"));
+        page.gameObject.name = "Servant Status Page";
+        page.transform.SetParent(GameObject.Find("Main Canvas").transform, false);
+        ServantStatusPage servantPage = page.GetComponent<ServantStatusPage>();
+        {
+            servantPage.servantInfo = this.servantInfo;
+            servantPage.onClose = (GameObject go) => {
+                this.servantInfo = servantPage.servantInfo;
+                UpdateInfo();
+ 
+                EventDispatcher.SendEvent("UI_EVENT", new EventData("ShowLobby"));
+            };
+        }
+        EventDispatcher.SendEvent("UI_EVENT", new EventData("HideLobby"));
+    }
+
     private void UpdateInfo()
     {
         level.SetText($"Level: {servantInfo.level}");
         talent.SetText($"Talent: {servantInfo.talent}");
         ability.SetText($"Ability: {servantInfo.ability}");
-    }
-
-    private void OnCloseStatus(Page page)
-    {
-        EventDispatcher.SendEvent("UI_EVENT", new EventData("ShowLobby"));
-
-        servantInfo = TempGlobalData.Instance.openedServantInfo;
-        TempGlobalData.Instance.openedServantInfo = null;
-        UpdateInfo();
-
-        Destroy(page.gameObject);
     }
 }

@@ -25,7 +25,7 @@ public class SceneController : MonoBehaviour
 
     public void Awake()
     {
-        scenes[0].GetComponent<Page>().onClose = (page) => {
+        scenes[0].GetComponent<Page>().onClose = (go) => {
             LoadMainScene();
         };
     }
