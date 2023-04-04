@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HomePage : Page
+public class HomePage : StaticPage
 {
     public void LoadManagePage()
     {

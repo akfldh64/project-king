@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ServantPage : Page
+public class ServantPage : StaticPage
 {
     public GameObject serventTab;
     public GameObject rankTab;

@@ -74,6 +74,7 @@ public class ServantElement : MonoBehaviour
         }
     }
 
+    // TODO: move to parent
     public void OpenStatusPage()
     {
         var page = Instantiate(AssetManager.Instance.LoadAsset<GameObject>("lobby", "Servant Status Page"));

@@ -25,12 +25,11 @@ public class SceneController : MonoBehaviour
 
     public void Awake()
     {
-        scenes[0].GetComponent<Page>().onClose = (go) => {
-            LoadMainScene();
-        };
+        scenes[0].GetComponent<Page>().onClose += LoadMainScene;
+        scenes[3].GetComponent<Page>().onClose += LoadMainScene;
     }
 
-    public void LoadMainScene()
+    public void LoadMainScene(GameObject go)
     {
         LoadScene(lastIndex);
     }
