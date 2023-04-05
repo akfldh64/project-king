@@ -135,6 +135,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1461861718211542333}
     m_Modifications:
+    - target: {fileID: 5133467520662409209, guid: 927e3c24b78a14450ab0f831438fa41a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6342086797946752902, guid: 927e3c24b78a14450ab0f831438fa41a, type: 3}
       propertyPath: m_Name
       value: Background
@@ -357,23 +361,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1089994056791197343, guid: b39f1e554962943b78021aaa6744d560, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1089994056791197343, guid: b39f1e554962943b78021aaa6744d560, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1089994056791197343, guid: b39f1e554962943b78021aaa6744d560, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1089994056791197343, guid: b39f1e554962943b78021aaa6744d560, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1089994056791197343, guid: b39f1e554962943b78021aaa6744d560, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 500
+      value: -140
       objectReference: {fileID: 0}
     - target: {fileID: 1089994056791197343, guid: b39f1e554962943b78021aaa6744d560, type: 3}
       propertyPath: m_SizeDelta.y
@@ -413,7 +417,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1089994056791197343, guid: b39f1e554962943b78021aaa6744d560, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -460
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 1089994056791197343, guid: b39f1e554962943b78021aaa6744d560, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
