@@ -441,7 +441,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4330020850885822281, guid: c3a021f4ffffe47449bf5f92f7c595ca, type: 3}
       propertyPath: m_Name
-      value: Menu
+      value: Bottom
       objectReference: {fileID: 0}
     - target: {fileID: 4330020851000367494, guid: c3a021f4ffffe47449bf5f92f7c595ca, type: 3}
       propertyPath: m_Pivot.x
@@ -537,7 +537,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4330020851636470739, guid: c3a021f4ffffe47449bf5f92f7c595ca, type: 3}
       propertyPath: m_Name
-      value: Content
+      value: Scene
       objectReference: {fileID: 0}
     - target: {fileID: 4330020851636470739, guid: c3a021f4ffffe47449bf5f92f7c595ca, type: 3}
       propertyPath: m_IsActive

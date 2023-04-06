@@ -11,31 +11,38 @@ public class ManagePage : Page
     public TextMeshProUGUI foodText;
     public TextMeshProUGUI soldierText;
 
+    private UserInfo userInfo;
+
     public void Awake()
     {
         foreach (var element in elements)
             element.SetPage(this);
     }
 
-    private long goldAmount;
-    private long foodAmount;
-    private long soldierAmount;
+    public void Start()
+    {
+        userInfo = TempGlobalData.Instance.me;
+
+        goldText.SetText($"{userInfo.funding}");
+        foodText.SetText($"{userInfo.supplies}");
+        soldierText.SetText($"{userInfo.army}");
+    }
 
     public void AddGold(long amount)
     {
-        goldAmount += amount;
-        goldText.SetText(goldAmount.ToString());
+        userInfo.funding += amount;
+        goldText.SetText(userInfo.funding.ToString());
     }
 
     public void AddFood(long amount)
     {
-        foodAmount += amount;
-        foodText.SetText(foodAmount.ToString());
+        userInfo.supplies += amount;
+        foodText.SetText(userInfo.supplies.ToString());
     }
 
     public void AddSoldier(long amount)
     {
-        soldierAmount += amount;
-        soldierText.SetText(soldierAmount.ToString());
+        userInfo.army += amount;
+        soldierText.SetText(userInfo.army.ToString());
     }
 }
