@@ -6,28 +6,17 @@ using System;
 public class BattleLogic : MonoBehaviour
 {
     public BattlePage page;
-
     public BattlePlayer enemy;
     public BattlePlayer player;
+    public Popup resultPopup;
 
-    public UserInfo userInfo;
+    private UserInfo userInfo;
 
     public void Initialize()
     {
         userInfo = TempGlobalData.Instance.me;
         player.totalArmy = player.currentArmy = userInfo.army;
-
-        EnterStage();
-    }
-
-    public void EnterStage()
-    {
-        if (page.stage.currentLevel < page.stage.level)
-        {
-            page.stage.currentLevel++;
-            page.SetLevel(page.stage.currentLevel);
-            enemy.totalArmy = enemy.currentArmy = page.stage.enemyArmyList[page.stage.currentLevel];
-        }
+        NextLevel();
     }
 
     public void Play()
@@ -39,30 +28,63 @@ public class BattleLogic : MonoBehaviour
     {
         page.playBtn.gameObject.SetActive(false);
 
-        if (Battle())
+        yield return StartCoroutine(Battle());
+
+        if (ClearLevel())
         {
-            EnterStage();
-        }
-        yield return new WaitForSeconds(0.5f);
-
-        page.playBtn.gameObject.SetActive(true);
-    }
-
-    public bool Battle()
-    {
-        bool isWin = false;
-
-        player.currentArmy = Convert.ToInt64(Mathf.Max(0f, player.currentArmy - enemy.currentArmy));
-        enemy.currentArmy = Convert.ToInt64(Mathf.Max(0f, enemy.currentArmy - player.currentArmy));
-
-        if (enemy.currentArmy == 0)
-        {
-            isWin = true;
+            if (NextLevel())
+                OpenResultPopup(true);
+            else
+                page.Close();
         }
         else
         {
-            isWin = false;
+            OpenResultPopup(false);
         }
-        return isWin;
+    }
+
+    public void OpenResultPopup(bool isWin)
+    {
+        var popup = resultPopup as BattleResultPopup;
+        popup.isWin = isWin;
+        popup.onClose = (popup) => {
+            if (popup.isWin)
+            {
+                popup.gameObject.SetActive(false);
+                page.playBtn.gameObject.SetActive(true);
+            }
+            else
+            {
+                page.Close();
+            }
+        };
+        popup.gameObject.SetActive(true);
+    }
+
+    public bool ClearLevel()
+    {
+        return enemy.currentArmy == 0;
+    }
+
+    public bool NextLevel()
+    {
+        if (page.stage.currentLevel == page.stage.level)
+            return false;
+
+        page.stage.currentLevel++;
+        page.SetLevel(page.stage.currentLevel);
+        enemy.totalArmy = enemy.currentArmy = page.stage.enemyArmyList[page.stage.currentLevel];
+
+        return true;
+    }
+
+    public IEnumerator Battle()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        long playerHp = Convert.ToInt64(Mathf.Max(0f, player.currentArmy - enemy.currentArmy));
+        long enemyHp = Convert.ToInt64(Mathf.Max(0f, enemy.currentArmy - player.currentArmy));
+        player.currentArmy = playerHp;
+        enemy.currentArmy = enemyHp;
     }
 }

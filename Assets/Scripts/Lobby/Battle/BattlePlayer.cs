@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class BattlePlayer : MonoBehaviour
@@ -11,8 +12,8 @@ public class BattlePlayer : MonoBehaviour
         get { return _totalArmy; }
         set
         {
-            armyText.SetText($"Power: {value.ToString()}");
             _totalArmy = value;
+            UpdateUI();
         }
     }
     private long _currentArmy;
@@ -21,11 +22,23 @@ public class BattlePlayer : MonoBehaviour
         get { return _currentArmy; }
         set
         {
-            currentText.SetText($"Army: {value.ToString()}");
             _currentArmy = value;
+            UpdateUI();
         }
     }
 
-    public TextMeshProUGUI armyText;
-    public TextMeshProUGUI currentText;
+    public Image hpGauge;
+    public TextMeshProUGUI totalArmyText;
+    public TextMeshProUGUI currentArmyText;
+
+    public void UpdateUI()
+    {
+        totalArmyText.SetText($"Power: {_totalArmy.ToString()}");
+        currentArmyText.SetText($"Army: {_currentArmy.ToString()}");
+
+        if (_totalArmy > 0)
+            hpGauge.fillAmount = ((float)_currentArmy/(float)_totalArmy);
+        else
+            hpGauge.fillAmount = 0f;
+    }
 }

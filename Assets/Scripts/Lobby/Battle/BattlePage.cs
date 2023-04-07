@@ -47,4 +47,10 @@ public class BattlePage : Page
     {
         logic.Play();
     }
+
+    public override void Close()
+    {
+        base.Close();
+        logic.StopAllCoroutines();
+    }
 }

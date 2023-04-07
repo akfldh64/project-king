@@ -550,8 +550,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16cdb39d5a0241ffb510851ac9b5f4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  armyText: {fileID: 768957701885017770}
-  currentText: {fileID: 8691864610451809986}
+  totalArmyText: {fileID: 768957701885017770}
+  currentArmyText: {fileID: 8691864610451809986}
+  hpGauge: {fileID: 4349908547661715270}
 --- !u!1 &2505771679007450987
 GameObject:
   m_ObjectHideFlags: 0
