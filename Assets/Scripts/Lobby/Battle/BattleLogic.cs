@@ -8,7 +8,6 @@ public class BattleLogic : MonoBehaviour
     public BattlePage page;
     public BattlePlayer enemy;
     public BattlePlayer player;
-    public Popup resultPopup;
 
     private UserInfo userInfo;
 
@@ -45,20 +44,21 @@ public class BattleLogic : MonoBehaviour
 
     public void OpenResultPopup(bool isWin)
     {
-        var popup = resultPopup as BattleResultPopup;
-        popup.isWin = isWin;
-        popup.onClose = (popup) => {
-            if (popup.isWin)
-            {
-                popup.gameObject.SetActive(false);
-                page.playBtn.gameObject.SetActive(true);
-            }
-            else
-            {
-                page.Close();
-            }
-        };
-        popup.gameObject.SetActive(true);
+        var popup = PopupManager.Instance.Open<BattleResultPopup>("lobby", "Battle Result Popup", (BattleResultPopup popup) => {
+            popup.isWin = isWin;
+            popup.onClose += (popup) => {
+                if (popup.isWin)
+                {
+                    popup.gameObject.SetActive(false);
+                    page.playBtn.gameObject.SetActive(true);
+                }
+                else
+                {
+                    page.Close();
+                }
+            };
+        });
+        popup.Open();
     }
 
     public bool ClearLevel()

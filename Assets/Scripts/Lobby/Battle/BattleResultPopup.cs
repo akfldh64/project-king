@@ -12,7 +12,7 @@ public class BattleResultPopup : Popup<BattleResultPopup>
 
     public bool isWin;
 
-    public void OnEnable()
+    public override void Initialize()
     {
         closeBtn.onClick.AddListener(Close);
 

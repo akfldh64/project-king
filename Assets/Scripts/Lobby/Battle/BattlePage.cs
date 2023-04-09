@@ -50,7 +50,7 @@ public class BattlePage : Page
 
     public override void Close()
     {
-        base.Close();
         logic.StopAllCoroutines();
+        base.Close();
     }
 }

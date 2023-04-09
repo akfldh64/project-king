@@ -25,6 +25,6 @@ public class BattleScene : StaticPage
                 EventDispatcher.SendEvent("UI_EVENT", new EventData("ShowLobby"));
             };
         }
-        EventDispatcher.SendEvent("UI_EVENT", new EventData("HideLobby"));        
+        EventDispatcher.SendEvent("UI_EVENT", new EventData("HideLobby"));
     }
 }
