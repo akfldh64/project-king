@@ -326,7 +326,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4330020851636470738}
   m_Layer: 0
-  m_Name: Scene
+  m_Name: Scenes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1178,7 +1178,7 @@ PrefabInstance:
     - target: {fileID: 356785116722750838, guid: 7b5b4fd1db17d44a2bc4ae48eb2770c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 4330020850467005762}
+      objectReference: {fileID: 0}
     - target: {fileID: 356785116722750838, guid: 7b5b4fd1db17d44a2bc4ae48eb2770c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -1492,18 +1492,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4334818559241314114, guid: 7b5b4fd1db17d44a2bc4ae48eb2770c9, type: 3}
   m_PrefabInstance: {fileID: 4330020850467005767}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4330020850467005762
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 17747796522678789}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1665c8640bce4f9181dff91f7d0e177, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &4330020850647505744
 PrefabInstance:
   m_ObjectHideFlags: 0
