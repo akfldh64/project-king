@@ -1,40 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
-public class WaitUntilEvent : CustomYieldInstruction
-{
-    private bool isWaiting = true;
-    private string eventName;
-
-    public override bool keepWaiting { get { return isWaiting; } }
-
-    public void OnEvent(EventData eventData)
-    {
-        if (eventData.name == eventName)
-            isWaiting = false;
-    }
-
-    public WaitUntilEvent(string eventName)
-    {
-        this.eventName = eventName;
-        EventDispatcher.Register("UI_EVENT", OnEvent);
-    }
-}
 
 public class LoginLogic : MonoBehaviour
 {
     private const int LOBBY_SCENE_ID = 1;
 
-    public void Start()
+    public Button loginBtn;
+
+    private void OnEnable()
     {
+        loginBtn.onClick.AddListener(() => EventDispatcher.SendEvent("LOGIN", new EventData("Start")));
+
         StartCoroutine(Logic());
     }
 
-    public IEnumerator Logic()
+    private void OnDisable()
     {
-        yield return new WaitUntilEvent("Start");
+        loginBtn.onClick.RemoveListener(() => EventDispatcher.SendEvent("LOGIN", new EventData("Start")));
+    }
+
+    private IEnumerator Logic()
+    {
+        yield return new WaitUntilLoginEvent("Start");
 
         var operation = AssetManager.Instance.LoadAssetBundle("lobby");
 

@@ -298,21 +298,15 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1461861718180932199, guid: 44046a65522f648299f2077c3802a4ce, type: 3}
   m_PrefabInstance: {fileID: 1461861718211542332}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1496155863 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1089994056791197336, guid: b39f1e554962943b78021aaa6744d560, type: 3}
+--- !u!114 &1496155871 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1089994056791197331, guid: b39f1e554962943b78021aaa6744d560, type: 3}
   m_PrefabInstance: {fileID: 1089994056322699723}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1496155869
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1496155863}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1d2e78a3f77a4f5599e9d43a98a5da2, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1715123991
@@ -391,26 +385,6 @@ PrefabInstance:
     - target: {fileID: 1089994056042532746, guid: b39f1e554962943b78021aaa6744d560, type: 3}
       propertyPath: m_fontSizeBase
       value: 33
-      objectReference: {fileID: 0}
-    - target: {fileID: 1089994056791197331, guid: b39f1e554962943b78021aaa6744d560, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1089994056791197331, guid: b39f1e554962943b78021aaa6744d560, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1496155869}
-    - target: {fileID: 1089994056791197331, guid: b39f1e554962943b78021aaa6744d560, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SendUIEvent
-      objectReference: {fileID: 0}
-    - target: {fileID: 1089994056791197331, guid: b39f1e554962943b78021aaa6744d560, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SimpleSendEvent, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1089994056791197331, guid: b39f1e554962943b78021aaa6744d560, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Start
       objectReference: {fileID: 0}
     - target: {fileID: 1089994056791197336, guid: b39f1e554962943b78021aaa6744d560, type: 3}
       propertyPath: m_Name
@@ -629,3 +603,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7a1617e527d344e2b696b520dc3a1f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loginBtn: {fileID: 1496155871}
